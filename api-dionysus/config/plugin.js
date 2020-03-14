@@ -1,7 +1,7 @@
 'use strict';
 
 exports.sequelize = {
-  enable: false,
+  enable: true,
   package: 'egg-sequelize',
 };
 

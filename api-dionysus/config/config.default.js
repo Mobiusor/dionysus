@@ -7,7 +7,7 @@ exports.sequelize = {
   dialect: 'postgres',
   host: 'localhost',
   port: 56000,
-  database: 'metis',
+  database: 'dionysus',
   username: 'postgres',
   password: 'Minerva001',
   define: {

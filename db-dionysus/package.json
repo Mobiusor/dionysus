@@ -1,0 +1,17 @@
+{
+  "name": "db-metis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "^7.11.0",
+    "sequelize": "^5.21.2",
+    "sequelize-cli": "^5.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

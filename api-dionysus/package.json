@@ -4,8 +4,7 @@
   "description": "",
   "private": true,
   "egg": {
-    "declarations": true,
-    "framework": "minerva-api-framework"
+    "declarations": true
   },
   "dependencies": {
     "egg": "^2.15.1",
@@ -13,6 +12,7 @@
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^5.2.1",
     "egg-socket.io": "^4.1.6",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "minerva-api-framework": "^1.0.25",
     "pg": "^7.18.2",
