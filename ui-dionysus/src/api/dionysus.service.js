@@ -5,6 +5,19 @@ const sendMessage = async (message) => {
   return data
 }
 
+const register = async (username, password, name, alias) => {
+  const data = await emit('account/register', { username, password, name, alias })
+  return data
+}
+
+const login = async (username, password) => {
+  const data = await emit('account/login', { username, password })
+  return data
+}
+
 export const dionysusService = {
-  sendMessage
+  sendMessage,
+
+  register,
+  login
 }

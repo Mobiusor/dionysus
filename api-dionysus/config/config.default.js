@@ -18,6 +18,13 @@ exports.sequelize = {
   },
 };
 
+exports.cluster = {
+  listen: {
+    port: 10706,
+    hostname: '0.0.0.0',
+  },
+};
+
 exports.io = {
   init: { }, // passed to engine.io
   namespace: {
