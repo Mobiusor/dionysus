@@ -5,8 +5,9 @@ const sendMessage = async (message) => {
   return data
 }
 
-const register = async (username, password, name, alias) => {
-  const data = await emit('account/register', { username, password, name, alias })
+const register = async (username, password, name, avatar) => {
+  console.log('register')
+  const data = await emit('account/register', { username, password, name, avatar })
   return data
 }
 
@@ -15,8 +16,14 @@ const login = async (username, password) => {
   return data
 }
 
+const getProfile = async () => {
+  const data = await emit('account/getProfile')
+  return data
+}
+
 export const dionysusService = {
   sendMessage,
+  getProfile,
 
   register,
   login

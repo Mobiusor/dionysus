@@ -4,7 +4,7 @@ import config from '../config/api.config'
 import store from '../store/'
 
 const baseUrl = config.dionysusHost
-const token = Vue.ls.get('token')
+const token = localStorage.getItem('token')
 
 console.log('token', token)
 
@@ -13,7 +13,7 @@ Vue.use(new VueSocketIO({
   connection: baseUrl,
   vuex: {
     store,
-    actionPrefix: 'SOCKET_',
+    actionPrefix: 'Socket_',
     mutationPrefix: 'SOCKET_'
   },
   options: {

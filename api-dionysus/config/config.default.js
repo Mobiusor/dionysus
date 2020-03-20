@@ -6,6 +6,7 @@ exports.sequelize = {
   Sequelize: require('sequelize'),
   dialect: 'postgres',
   host: 'localhost',
+  logging: false,
   port: 56000,
   database: 'dionysus',
   username: 'postgres',

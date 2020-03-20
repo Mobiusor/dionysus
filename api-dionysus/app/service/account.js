@@ -22,19 +22,19 @@ class AccountService extends Service {
     return item;
   }
 
-  async create(username, password, name, alias) {
+  async create(username, password, name, avatar) {
     const { ctx } = this;
-    const query = { username, password, name, alias };
+    const query = { username, password, name, avatar };
 
     const result = await this.findByUsername(username);
     if (result) {
-      ctx.err(500, ctx.__('Account already exist.'));
+      ctx.err(400, ctx.__('用户已存在'));
     }
 
     const item = await ctx.model.Account.create(query);
 
     if (!item) {
-      ctx.err(500, ctx.__('Create account failed.'));
+      ctx.err(400, ctx.__('创建用户失败'));
     }
     return item;
   }

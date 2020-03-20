@@ -21,7 +21,7 @@ module.exports = app => {
       type: STRING,
       allowNull: false,
     },
-    alias: {
+    avatar: {
       type: STRING,
       allowNull: false,
     },

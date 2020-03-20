@@ -6,15 +6,18 @@ const socket = {
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token
-    }
   },
 
   actions: {
     // 获取用户信息
-    async Connect () {
-
+    async 'Socket_chat/message' (data) {
+      console.log('socket connect data')
+    },
+    async Socket_connect ({ commit }) {
+      const response = await dionysusService.getProfile()
+      const { name, avatar } = response
+      commit('SET_NAME', name)
+      commit('SET_AVATAR', avatar)
     }
     // 登出
   }

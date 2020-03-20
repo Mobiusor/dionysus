@@ -1,13 +1,9 @@
-import { removeToken } from 'minerva-ui-sdk'
-
-import { authService } from '@/api'
-import { welcome } from '@/utils/util'
+import { dionysusService } from '@/api'
 
 const user = {
   state: {
     token: '',
     name: '',
-    welcome: '',
     avatar: '',
     roles: [],
     info: {},
@@ -17,10 +13,16 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
+      console.log('set token', token)
+      localStorage.setItem('token', token)
     },
-    SET_NAME: (state, { name, welcome }) => {
+    REMOVE_TOKEN: (state) => {
+      state.token = null
+      console.log('remove token')
+      localStorage.removeItem('token')
+    },
+    SET_NAME: (state, name) => {
       state.name = name
-      state.welcome = welcome
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
@@ -37,28 +39,18 @@ const user = {
   },
 
   actions: {
-    // 获取用户信息
-    async GetInfo ({ commit }) {
-      const res = await authService.getInfo()
-      const userInfo = res.data
-      if (userInfo.roles) {
-        commit('SET_ROLES', userInfo.roles)
-        commit('SET_NAME', { name: userInfo.accountDisplayName, welcome: welcome() })
-        commit('SET_INFO', userInfo)
-        commit('SET_USER_LOADED', true)
-        return userInfo
-      } else {
-        throw new Error('getInfo: roles must be a non-null array !')
-      }
+    async Login ({ commit }, { username, password }) {
+      const token = await dionysusService.login(username, password)
+      commit('SET_TOKEN', token)
     },
 
-    // 登出
-    async Logout ({ commit }) {
-      return new Promise((resolve) => {
-        commit('SET_ROLES', {})
-        removeToken()
-        resolve()
-      })
+    async Register ({ commit }, { username, password, name, avatar }) {
+      const token = await dionysusService.register(username, password, name, avatar)
+      commit('SET_TOKEN', token)
+    },
+
+    Logout ({ commit }) {
+      commit('REMOVE_TOKEN')
     }
 
   }

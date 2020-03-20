@@ -22,7 +22,7 @@ module.exports = {
         type: STRING,
         allowNull: false,
       },
-      alias: {
+      avatar: {
         type: STRING,
         allowNull: false,
       },

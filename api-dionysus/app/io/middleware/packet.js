@@ -2,7 +2,10 @@
 
 module.exports = () => {
   return async (ctx, next) => {
-    const { socket } = ctx;
-    await next();
+    try {
+      await next();
+    } catch (e) {
+      ctx.err(500, e.message, e.stack);
+    }
   };
 };

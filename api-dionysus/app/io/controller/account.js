@@ -5,10 +5,9 @@ class AccountController extends Controller {
 
   async register() {
     const { ctx } = this;
-    const { username, password, name, alias } = ctx.params;
-
-    const item = await ctx.service.account.create(username, password, name, alias);
-    const token = ctx.service.auth.assign(item.id);
+    const { username, password, name, avatar } = ctx.params;
+    const item = await ctx.service.account.create(username, password, name, avatar);
+    const token = ctx.service.auth.sign({ id: item.id });
     ctx.ack(token);
   }
 
@@ -17,13 +16,21 @@ class AccountController extends Controller {
     const { username, password } = ctx.params;
     const item = await ctx.service.account.findByUsername(username);
     if (!item) {
-      ctx.err('Account does not exist');
+      ctx.err(400, '用户不存在');
     } else if (item.password !== password) {
-      ctx.err('Wrong password');
+      ctx.err(400, '密码错误');
     } else {
-      const token = ctx.service.auth.assign(item.id);
+      const token = ctx.service.auth.sign({ id: item.id });
       ctx.ack(token);
     }
+  }
+
+  async getProfile() {
+    const { ctx } = this;
+    const { id } = ctx.credential;
+    const item = await ctx.service.account.find(id);
+    const { username, name, avatar } = item;
+    ctx.ack({ username, name, avatar });
   }
 
   async disconnect() {

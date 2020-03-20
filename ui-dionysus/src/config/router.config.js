@@ -2,8 +2,6 @@
 import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView } from '@/layouts'
 // import { bxAnaalyse } from '@/core/icons'
 
-export const defaultRouterName = 'workflow'
-
 export const asyncRouterMap = [
 
   {
