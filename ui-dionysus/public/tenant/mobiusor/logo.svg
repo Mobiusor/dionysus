@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
-    <title>logo</title>
-    <g id="logo" stroke="none" stroke-width="1" fill="white" fill-rule="evenodd">
-        <path d="M4,100 L4,20.9274673 L17.1255724,20.9274673 L77.3650416,72.8598207 L77.3650416,84.4617294 L13.1879007,28.6966026 L13.1879007,92.2308647 L4,100 Z M82.7158145,0 L95.7954816,0 L95.7954816,13.0796671 L82.7158145,13.0796671 L82.7158145,0 Z M86.607476,92.2308647 L86.607476,28.6966026 L63.0502587,49.1725903 L56.5564804,43.5097539 L82.6697593,20.9274673 L95.7954816,20.9274673 L95.7954816,100 L86.607476,92.2308647 Z M22.43044,84.1854935 L22.43044,72.9078443 L36.7619563,60.5231867 L43.3579073,66.1620113 L22.43044,84.1854935 Z" id="Combined-Shape" fill="white"></path>
+<svg width="160px" height="160px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Mobius Studio</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Path-3" fill="#FFFFFF" points="39.9433022 44 15 62 15 98 39.9433022 116.248928 119.943302 56 134.943302 67 134.943302 93 119.943302 104 95.4211435 86.1083137 87.6702709 91.8874596 119.943302 116 144.943302 98 144.943302 62 119.943302 44 39.9433022 104 24.9948183 93 24.9948183 67 39.9433022 56 63.9881068 73.867108 71.9059345 68.0904822"></polygon>
     </g>
 </svg>
