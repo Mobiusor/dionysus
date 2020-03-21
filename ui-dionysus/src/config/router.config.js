@@ -14,7 +14,7 @@ export const asyncRouterMap = [
       path: '/room',
       name: 'room',
       component: () => import('@/views/Room/Index'),
-      meta: { title: '仪表盘', icon: 'home' }
+      meta: { title: '房间', icon: 'home' }
     },
     {
       path: '/draw-something',

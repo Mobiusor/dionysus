@@ -3,7 +3,8 @@ import Vue from 'vue'
 
 const users = {
   state: {
-    list: {}
+    list: {},
+    fetching: {}
   },
 
   mutations: {
@@ -16,9 +17,12 @@ const users = {
     async GetUserInfo ({ commit, state }, userId) {
       let user = state.list[userId]
       if (!user) {
-        user = await dionysusService.getUserInfo(userId)
-        console.log('fetched')
-        commit('UPDATE_USER', user)
+        if (!state.fetching[userId]) {
+          state.fetching[userId] = true
+          user = await dionysusService.getUserInfo(userId)
+          console.log('fetched user', user.id, user.name)
+          commit('UPDATE_USER', user)
+        }
       }
       return user
     }

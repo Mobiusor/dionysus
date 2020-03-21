@@ -7,7 +7,7 @@ module.exports = () => {
     const clientId = socket.id;
     const query = socket.handshake.query;
 
-    console.log(clientId, '=>', query.token);
+    // console.log(clientId, '=>', query.token);
 
     // if (session[query.uid].token !== query.token) {
     //   socket.emit('res', '登录状态已改变，请重新登陆');

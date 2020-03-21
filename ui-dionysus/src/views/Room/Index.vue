@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-button icon="plus" @click="onClickCreat" style="margin-bottom: 16px">创建房间</a-button>
+    <a-button icon="plus" @click="onClickCreate" style="margin-bottom: 16px">创建房间</a-button>
     <a-row :gutter="16">
       <a-col
         :xs="24"
@@ -12,27 +12,31 @@
         v-for="room in rooms"
         style="margin-bottom: 16px;"
         :key="room.id">
-        <a-card style="cursor: pointer" >
+        <a-card style="cursor: pointer" @click.native="onEnter" >
           <img
             alt="example"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
             slot="cover"
           />
-          <a-card-meta :title="room.name">
+          <a-card-meta>
+            <template slot="title">
+              {{ room.name }}
+            </template>
             <template slot="description">
-              创建者 - {{ getUserName(room.creator) }}
+              <div>房间号 - {{ room.id }}</div>
+              <div>创建者 - {{ getUserName(room.creator) }}</div>
             </template>
             <a-avatar
               slot="avatar"
-              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              :src="getUserAvatar(room.creator)"
             />
           </a-card-meta>
 
           <template slot="actions">
-            <a><a-icon style="margin-right: 8px" type="login"/>进入</a>
+            <a @click="onEnter"><a-icon style="margin-right: 8px" type="login"/>进入</a>
           </template>
           <template slot="actions">
-            <a style="color:#f50" v-if="room.creator === userId"><a-icon style="margin-right: 8px" type="delete"/>删除</a>
+            <a @click="onDelete(room.id)" style="color:#f50" v-if="room.creator === userId"><a-icon style="margin-right: 8px" type="delete"/>删除</a>
           </template>
         </a-card>
       </a-col>
@@ -45,9 +49,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import CreateRoomModal from '@/modals/CreateRoomModal'
+import { mixinUser } from '@/utils/mixin'
 
 export default {
   components: { CreateRoomModal },
+  mixins: [mixinUser],
   data () {
     return {
       visible: false
@@ -69,25 +75,23 @@ export default {
 
   },
   methods: {
-    ...mapActions(['GetRooms', 'GetUserInfo']),
+    ...mapActions(['GetRooms', 'DeleteRoom', 'GetUserInfo']),
 
     async reload () {
       await this.GetRooms()
-      const set = new Set()
-      this.rooms.forEach(room => set.add(room.creator))
-      const array = Array.from(set)
-      const tasks = array.map(id => this.GetUserInfo(id))
-      await Promise.all(tasks)
     },
 
-    getUserName (id) {
-      if (this.users[id] !== undefined) {
-        return this.users[id].name
-      } else return id
-    },
-
-    onClickCreat () {
+    onClickCreate () {
       this.visible = true
+    },
+
+    onEnter () {
+      console.log('enter')
+    },
+
+    async onDelete (id) {
+      await this.DeleteRoom(id)
+      this.$message.success('删除成功')
     }
   }
 }

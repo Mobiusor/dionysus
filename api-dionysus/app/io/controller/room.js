@@ -23,9 +23,12 @@ class RoomController extends Controller {
     const { id: userId } = ctx.credential;
     const { id } = ctx.params;
     const item = await ctx.service.room.find(id);
-    if (item.creator !== userId) { ctx.err(403, '不可以随便删别人创建的房间哦'); }
-    await ctx.service.room.deleteOne(id);
-    ctx.ack();
+    if (item.creator !== userId) {
+      ctx.err(403, '不可以随便删别人创建的房间哦');
+    } else {
+      await ctx.service.room.deleteOne(id);
+      ctx.ack(id);
+    }
   }
 }
 

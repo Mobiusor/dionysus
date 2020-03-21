@@ -57,7 +57,5 @@ export const AppDeviceEnquire = {
 export * from './mixinDevice'
 export * from './mixinNotification'
 export * from './mixinEvent'
-
-export * from './mixinApproval'
-export * from './mixinBot'
+export * from './mixinUser'
 export * from './mixinMapping'

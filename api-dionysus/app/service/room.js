@@ -19,7 +19,7 @@ class RoomService extends Service {
 
   async create(creator, type, name) {
     const { app } = this;
-    const id = uuid();
+    const id = await this.generateRoomId();
     const room = { id, creator, type, name };
     const str = JSON.stringify(room);
     await app.redis.hset('rooms', id, str);
@@ -40,6 +40,18 @@ class RoomService extends Service {
       await app.redis.hset('rooms', id, str);
     }
     return room;
+  }
+
+
+  async generateRoomId() {
+    const { app } = this;
+    let id = '';
+    let flag = true;
+    while (flag) {
+      id = Math.ceil((1 + Math.random()) * 93276896452).toString(36).substring(1);
+      flag = await app.redis.hexists('rooms', id);
+    }
+    return id;
   }
 }
 
