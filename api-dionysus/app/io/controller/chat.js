@@ -6,9 +6,13 @@ class ChatController extends Controller {
 
   async message() {
     const { ctx } = this;
-    const { type, content } = ctx.args[0];
-    ctx.err(401, 'invalid message');
-    await ctx.socket.broadcast.emit('chat/message', { type, content: content + 'echo' });
+    const { type, content } = ctx.params;
+
+    const { id } = ctx.credential;
+    const account = await ctx.service.account.find(id);
+    const sender = { id: account.id, name: account.name, avatar: account.avatar };
+    ctx.ack({ sender, type, content });
+    await ctx.socket.broadcast.emit('chat/message', { sender, type, content });
   }
 
 }

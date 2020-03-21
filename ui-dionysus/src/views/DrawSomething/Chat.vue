@@ -2,6 +2,7 @@
   <div>
     <div id="messages">
       <div v-for="(message, index) in messages" :key="index">
+        <span style="color: lightgray">{{ message.sender.name }}: </span>
         <span>{{ message.content }}</span>
       </div>
     </div>
@@ -39,7 +40,7 @@ export default {
       try {
         const response = await dionysusService.sendMessage(message)
         console.log(response)
-        this.messages.push(message)
+        this.messages.push(response)
         this.content = ''
       } catch (e) {
         this.$message.error(e.message)

@@ -16,13 +16,16 @@ const getters = {
   token: state => state.user.token,
   avatar: state => state.user.avatar,
   nickname: state => state.user.name,
-  welcome: state => state.user.welcome,
+  userId: state => state.user.id,
   roles: state => state.user.roles,
-  userInfo: state => state.user.info,
   userLoaded: state => state.user.userLoaded,
 
+  users: state => state.users.list,
+
   addRouters: state => state.permission.addRouters,
-  lang: state => state.i18n.lang
+  lang: state => state.i18n.lang,
+
+  rooms: state => state.room.list
 
 }
 

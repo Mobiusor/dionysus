@@ -1,0 +1,12 @@
+version: "2.4"
+services:
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    # volumes:
+      # - "/var/lib/redis/conf:/usr/local/etc/redis"
+      # - "/var/lib/redis/data:/data"
+    command:
+      # 执行的命令
+      redis-server

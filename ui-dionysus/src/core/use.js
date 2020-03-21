@@ -13,6 +13,7 @@ import VueClipboard from 'vue-clipboard2'
 import MultiTab from '@/components/MultiTab'
 import PageLoading from '@/components/PageLoading'
 import PermissionHelper from '@/utils/helper/permission'
+import VueTimers from 'vue-timers'
 
 import MIcon from '@/components/MIcon'
 
@@ -28,5 +29,6 @@ Vue.use(VueStorage, config.storageOptions)
 Vue.use(VueClipboard)
 Vue.use(PermissionHelper)
 Vue.use(VueCropper)
+Vue.use(VueTimers)
 
 Vue.component('m-icon', MIcon)

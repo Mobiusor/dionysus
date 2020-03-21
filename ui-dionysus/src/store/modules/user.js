@@ -2,6 +2,7 @@ import { dionysusService } from '@/api'
 
 const user = {
   state: {
+    id: null,
     token: '',
     name: '',
     avatar: '',
@@ -13,19 +14,16 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
-      console.log('set token', token)
       localStorage.setItem('token', token)
     },
     REMOVE_TOKEN: (state) => {
       state.token = null
-      console.log('remove token')
       localStorage.removeItem('token')
     },
-    SET_NAME: (state, name) => {
-      state.name = name
-    },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar
+    SET_USER: (state, user) => {
+      state.id = user.id
+      state.name = user.name
+      state.avatar = user.avatar
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
@@ -39,6 +37,11 @@ const user = {
   },
 
   actions: {
+    async Socket_connect ({ commit }) {
+      const user = await dionysusService.getProfile()
+      commit('SET_USER', user)
+    },
+
     async Login ({ commit }, { username, password }) {
       const token = await dionysusService.login(username, password)
       commit('SET_TOKEN', token)

@@ -9,14 +9,21 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: '首页' },
-    redirect: '/dashboard',
+    redirect: '/room',
     children: [{
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import('@/views/Dashboard/Index'),
-      meta: { title: '仪表盘', icon: 'dashboard' }
+      path: '/room',
+      name: 'room',
+      component: () => import('@/views/Room/Index'),
+      meta: { title: '仪表盘', icon: 'home' }
+    },
+    {
+      path: '/draw-something',
+      name: 'drawSomething',
+      component: () => import('@/views/DrawSomething/Index'),
+      meta: { title: '你画我猜', icon: 'edit' }
     }]
   },
+
   {
     path: '*', redirect: '/404', hidden: true
   }

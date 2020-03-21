@@ -2,12 +2,12 @@
 
 module.exports = () => {
   return async (ctx, next) => {
-    const { socket, session } = ctx;
+    const { socket } = ctx;
 
     const clientId = socket.id;
     const query = socket.handshake.query;
 
-    console.log('client id', clientId, query);
+    console.log(clientId, '=>', query.token);
 
     // if (session[query.uid].token !== query.token) {
     //   socket.emit('res', '登录状态已改变，请重新登陆');

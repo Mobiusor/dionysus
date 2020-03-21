@@ -27,10 +27,10 @@ class AccountController extends Controller {
 
   async getProfile() {
     const { ctx } = this;
-    const { id } = ctx.credential;
-    const item = await ctx.service.account.find(id);
-    const { username, name, avatar } = item;
-    ctx.ack({ username, name, avatar });
+    const { id: userId } = ctx.credential;
+    const item = await ctx.service.account.find(userId);
+    const { id, username, name, avatar } = item;
+    ctx.ack({ id, username, name, avatar });
   }
 
   async disconnect() {

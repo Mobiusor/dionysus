@@ -9,7 +9,7 @@
       <!-- <notice-icon class="action"/> -->
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
-          <div v-if="nickname" >
+          <div v-if="userId" >
             <a-avatar class="avatar" style="background-color:#ccc; top: -2px;" size="small" :src="avatar"/>
             <span>{{ nickname }}</span>
           </div>
@@ -19,7 +19,7 @@
           </div>
         </span>
         <a-menu slot="overlay" class="user-dropdown-menu-wrapper">
-          <a-menu-item key="2" v-if="nickname">
+          <a-menu-item key="2" v-if="userId">
             <a @click="onLogout">
               <a-icon type="logout"/>
               <span>退出登录</span>
@@ -40,7 +40,7 @@
 
 <script>
 import NoticeIcon from '@/components/NoticeIcon'
-import UserModal from '@/components/tools/UserModal/Index'
+import UserModal from '@/modals/UserModal/Index'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -52,14 +52,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['nickname', 'avatar'])
+    ...mapGetters(['nickname', 'avatar', 'userId'])
   },
 
   methods: {
     ...mapActions(['Logout']),
     onLogin () {
       this.visible = true
-      console.log(this.nickname)
     },
     onLogout () {
       this.$confirm({

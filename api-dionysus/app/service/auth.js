@@ -18,21 +18,18 @@ class AuthService extends Service {
 
   sign(payload) {
     const { ctx } = this;
-    ctx.logger.debug('payload is: %j', payload);
     const options = {
       expiresIn: tokenExpirationSeconds,
       issuer: tokenIssuer,
       jwtid: uuidv4(),
     };
     const token = jwt.sign(payload, this.secret, options);
-    ctx.logger.debug('token is: %s', token, options);
     return token;
   }
 
   verify(token) {
     const { ctx } = this;
     const result = jwt.verify(token, this.secret);
-    ctx.logger.debug('result is: %s ', result);
     return result;
   }
 }

@@ -26,6 +26,15 @@ exports.cluster = {
   },
 };
 
+exports.redis = {
+  client: {
+    port: 6379,
+    host: 'localhost',
+    password: 'auth',
+    db: 0,
+  },
+};
+
 exports.io = {
   init: { }, // passed to engine.io
   namespace: {
