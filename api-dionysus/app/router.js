@@ -19,6 +19,9 @@ module.exports = app => {
   io.route('room/index', io.controller.room.index);
   io.route('room/create', io.controller.room.create);
   io.route('room/delete', io.controller.room.delete);
+  io.route('room/join', io.controller.room.join);
+  io.route('room/leave', io.controller.room.leave);
+  io.route('room/players', io.controller.room.getPlayers);
 
   io.route('chat/message', io.controller.chat.message);
 };

@@ -1,5 +1,12 @@
+import { mapActions, mapGetters } from 'vuex'
+
 const mixinUser = {
+  computed: {
+    ...mapGetters(['users'])
+  },
   methods: {
+    ...mapActions(['GetUserInfo']),
+
     getUser (id) {
       this.GetUserInfo(id)
       return this.users[id]

@@ -45,6 +45,20 @@ const updateRoom = async (id, option) => {
   return data
 }
 
+const joinRoom = async (roomId) => {
+  const data = await emit('room/join', { roomId })
+  return data
+}
+
+const leaveRoom = async (roomId) => {
+  const data = await emit('room/leave', { roomId })
+  return data
+}
+
+const getPlayers = async (roomId) => {
+  const data = await emit('room/players', { roomId })
+  return data
+}
 export const dionysusService = {
   sendMessage,
 
@@ -57,5 +71,8 @@ export const dionysusService = {
   getRooms,
   createRoom,
   deleteRoom,
-  updateRoom
+  updateRoom,
+  joinRoom,
+  leaveRoom,
+  getPlayers
 }

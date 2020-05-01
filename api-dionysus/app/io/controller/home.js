@@ -10,9 +10,8 @@ class HomeController extends Controller {
   }
 
   async disconnect() {
-    const { ctx } = this;
-    const message = ctx.args[0];
-    console.log(message);
+    // const { ctx } = this;
+    // const message = ctx.args[0];
   }
 }
 

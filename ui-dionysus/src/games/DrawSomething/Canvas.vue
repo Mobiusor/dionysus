@@ -1,16 +1,22 @@
 <template>
-  <canvas
-    id="canvas"
-    width="800"
-    height="400"
-    ref="canvas"
-    @mousedown="onMouseDown"
-    @mousemove="onMouseMove"
-    @mouseup="onMouseUp" />
+  <div>
+    {{ roomId }}
+    <canvas
+      id="canvas"
+      width="800"
+      height="400"
+      ref="canvas"
+      @mousedown="onMouseDown"
+      @mousemove="onMouseMove"
+      @mouseup="onMouseUp" />
+  </div>
 </template>
 
 <script>
 export default {
+  props: {
+    roomId: { type: String, default: null }
+  },
   data () {
     return {
       context: null,
@@ -29,11 +35,16 @@ export default {
     sync: { time: 200, autostart: true }
   },
   mounted () {
-    const canvas = this.$refs.canvas
-    const context = canvas.getContext('2d')
-    this.context = context
+    this.setContext()
   },
   methods: {
+    setContext () {
+      const canvas = this.$refs.canvas
+      if (canvas) {
+        const context = canvas.getContext('2d')
+        this.context = context
+      }
+    },
     onMouseDown (event) {
       this.context.fillStyle = '#ff5500'
       this.point = { x: event.offsetX, y: event.offsetY }

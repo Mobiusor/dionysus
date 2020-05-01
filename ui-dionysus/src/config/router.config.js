@@ -14,13 +14,15 @@ export const asyncRouterMap = [
       path: '/room',
       name: 'room',
       component: () => import('@/views/Room/Index'),
-      meta: { title: '房间', icon: 'home' }
+      meta: { title: '房间列表', icon: 'home' }
     },
     {
-      path: '/draw-something',
-      name: 'drawSomething',
-      component: () => import('@/views/DrawSomething/Index'),
-      meta: { title: '你画我猜', icon: 'edit' }
+      path: '/room/:roomId',
+      name: 'gameRoom',
+      props: true,
+      component: () => import('@/games/Index'),
+      meta: { title: '房间', icon: 'edit' },
+      hidden: true
     }]
   },
 

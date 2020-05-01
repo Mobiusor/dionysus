@@ -62,7 +62,7 @@
       </a-layout-footer>
 
       <!-- Setting Drawer (show in development mode) -->
-      <SettingDrawer v-if="!production"></SettingDrawer>
+      <!-- <SettingDrawer v-if="!production"></SettingDrawer> -->
     </a-layout>
   </a-layout>
 

@@ -25,7 +25,8 @@ const getters = {
   addRouters: state => state.permission.addRouters,
   lang: state => state.i18n.lang,
 
-  rooms: state => state.room.list
+  rooms: state => state.room.list,
+  players: state => state.room.players
 
 }
 

@@ -18,11 +18,12 @@ class RoomService extends Service {
   }
 
   async create(creator, type, name) {
-    const { app } = this;
+    const { ctx, app } = this;
     const id = await this.generateRoomId();
     const room = { id, creator, type, name };
     const str = JSON.stringify(room);
     await app.redis.hset('rooms', id, str);
+    await ctx.game[type].init();
     return room;
   }
 
@@ -42,7 +43,6 @@ class RoomService extends Service {
     return room;
   }
 
-
   async generateRoomId() {
     const { app } = this;
     let id = '';
@@ -53,6 +53,7 @@ class RoomService extends Service {
     }
     return id;
   }
+
 }
 
 module.exports = RoomService;

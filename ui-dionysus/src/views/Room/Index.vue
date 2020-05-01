@@ -12,7 +12,7 @@
         v-for="room in rooms"
         style="margin-bottom: 16px;"
         :key="room.id">
-        <a-card style="cursor: pointer" @click.native="onEnter" >
+        <a-card style="cursor: pointer" @click.native="onEnterRoom(room.id)" >
           <img
             alt="example"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
@@ -33,7 +33,7 @@
           </a-card-meta>
 
           <template slot="actions">
-            <a @click="onEnter"><a-icon style="margin-right: 8px" type="login"/>进入</a>
+            <a @click="onEnterRoom(room.id)"><a-icon style="margin-right: 8px" type="login"/>进入</a>
           </template>
           <template slot="actions">
             <a @click="onDelete(room.id)" style="color:#f50" v-if="room.creator === userId"><a-icon style="margin-right: 8px" type="delete"/>删除</a>
@@ -71,11 +71,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['rooms', 'userId', 'users'])
-
+    ...mapGetters(['rooms', 'userId'])
   },
+
   methods: {
-    ...mapActions(['GetRooms', 'DeleteRoom', 'GetUserInfo']),
+    ...mapActions(['GetRooms', 'DeleteRoom']),
 
     async reload () {
       await this.GetRooms()
@@ -85,8 +85,8 @@ export default {
       this.visible = true
     },
 
-    onEnter () {
-      console.log('enter')
+    onEnterRoom (id) {
+      this.$router.push(`/room/${id}`)
     },
 
     async onDelete (id) {
